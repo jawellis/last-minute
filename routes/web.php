@@ -18,8 +18,7 @@ use Illuminate\Support\Facades\Route;
 
 // All notices
 Route::get('/', function () {
-    return view('noticeBoard', [
-        'heading' => 'Latest notices',
+    return view('notices', [
         'notices' => Notice::all()
     ]);
 });
