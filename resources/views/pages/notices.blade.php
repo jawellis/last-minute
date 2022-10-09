@@ -15,6 +15,7 @@
     <nav>
         <ul>
             <li> Notice Board </li>
+            <li> Invitations </li>
             <li> Profile </li>
         </ul>
     </nav><hr>
