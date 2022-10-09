@@ -10,6 +10,19 @@
 </head>
 <body>
 <main>
+    <button> < </button>
+    <header>
+        <img src="" alt="profile pic"><br><br>
+        <h1>{{$notice['name'] }}</h1>
+        <nav>
+            <ul>
+                <li> Profile </li>
+                <li> Memories </li>
+                <li> Settings </li>
+            </ul>
+        </nav><hr>
+    </header>
+
     <section class="plan-notice">
         <h2>
             {{$notice['name'] }} is looking for plans!
