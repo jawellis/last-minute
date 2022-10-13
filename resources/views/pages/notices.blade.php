@@ -14,9 +14,9 @@
     <h1 class="fake-logo">Last m1nute</h1><hr>
     <nav>
         <ul>
-            <li> Notice Board </li>
-            <li> Invitations </li>
-            <li> Profile </li>
+            <li><a href="/notices"> Notice Board </a></li>
+            <li><a href="/notices"> Invitations </a></li>
+            <li><a href="/profile"> Profile </a></li>
         </ul>
     </nav><hr>
 </header>

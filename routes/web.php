@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\PagesController;
+use App\Http\Controllers\NoticesController;
 use App\Models\Notice;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -30,7 +31,7 @@ Route::get('/notices', [PagesController::class, 'notices']);
 //});
 
 //CRUD for single notice (logged in user)
-
+Route::resource('notices', NoticesController::class);
 
 
 // 2.   Profile page
