@@ -11,8 +11,8 @@ class PagesController extends Controller
         return view('pages.index');
     }
 
-    public function notices() {
-        return view('pages.notices', [
+    public function noticeBoard() {
+        return view('pages.noticeBoard', [
         'notices' => Notice::all()
     ]);
     }

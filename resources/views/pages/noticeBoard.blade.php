@@ -14,8 +14,8 @@
     <h1 class="fake-logo">Last m1nute</h1><hr>
     <nav>
         <ul>
-            <li><a href="/notices"> Notice Board </a></li>
-            <li><a href="/notices"> Invitations </a></li>
+            <li><a href="/noticeBoard"> Notice Board </a></li>
+            <li><a href="/noticeBoard"> Invitations </a></li>
             <li><a href="/profile"> Profile </a></li>
         </ul>
     </nav><hr>
@@ -33,7 +33,7 @@
         @foreach($notices as $notice)
             <section class="plan-notice">
                 <p class="user">
-                    <b><a href="/notices/{{$notice['id']}}">{{$notice['name']}} </a></b>
+                    <b><a href="/noticeBoard/{{$notice['id']}}">{{$notice['name']}} </a></b>
                     is looking for last minute plans!
                 </p>
                 <p class="notice-data">

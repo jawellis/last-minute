@@ -18,12 +18,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Homepage
+//1.    Welcome page
 Route::get('/', [PagesController::class, 'index']);
 
 //1.    Notice board
 //Show all notices
-Route::get('/notices', [PagesController::class, 'notices']);
+Route::get('/noticeBoard', [PagesController::class, 'noticeBoard']);
 //Route::get('/notices', function () {
 //    return view('pages.notices', [
 //        'notices' => Notice::all()
@@ -36,7 +36,7 @@ Route::resource('notices', NoticesController::class);
 
 // 2.   Profile page
 //Show user profile
-Route::get('/notices/{id}', [PagesController::class, 'profile']);
+Route::get('/noticeBoard/{id}', [PagesController::class, 'profile']);
 //Route::get('/notices/{id}', function($id){
 //    return view('pages.profile', [
 //        'notice' => Notice::find($id)
