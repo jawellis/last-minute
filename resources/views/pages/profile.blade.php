@@ -9,8 +9,8 @@
     <title>Document</title>
 </head>
 <body>
+<a href="/noticeBoard" class="back-btn"> < </a>
 <main>
-    <button> < </button>
     <header>
         <img src="" alt="profile pic"><br><br>
         <h1>{{$notice['name'] }}</h1>

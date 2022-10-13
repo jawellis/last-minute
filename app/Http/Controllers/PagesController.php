@@ -11,16 +11,23 @@ class PagesController extends Controller
         return view('pages.index');
     }
 
-    public function noticeBoard() {
-        return view('pages.noticeBoard', [
-        'notices' => Notice::all()
-    ]);
-    }
 
-    public function profile($id) {
-        return view('pages.profile', [
-        'notice' => Notice::find($id)
-    ]);
-    }
+
+
+
+
+
+
+//    public function noticeBoard() {
+//        return view('pages.noticeBoard', [
+//        'notices' => Notice::all()
+//    ]);
+//    }
+
+//    public function profile($id) {
+//        return view('pages.profile', [
+//        'notice' => Notice::find($id)
+//    ]);
+//    }
 
 }

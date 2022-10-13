@@ -51,6 +51,11 @@ a {
     color: #700000;
 }
 
+a.back-btn{
+    border: 1px solid black;
+    padding: 8px;
+}
+
 p.notice-data {
     margin: 0;
     padding: 0;

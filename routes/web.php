@@ -23,7 +23,7 @@ Route::get('/', [PagesController::class, 'index']);
 
 //1.    Notice board
 //Show all notices
-Route::get('/noticeBoard', [PagesController::class, 'noticeBoard']);
+//Route::get('/noticeBoard', [PagesController::class, 'noticeBoard']);
 //Route::get('/notices', function () {
 //    return view('pages.notices', [
 //        'notices' => Notice::all()
@@ -31,12 +31,12 @@ Route::get('/noticeBoard', [PagesController::class, 'noticeBoard']);
 //});
 
 //CRUD for single notice (logged in user)
-Route::resource('notices', NoticesController::class);
+Route::resource('noticeBoard', NoticesController::class);
 
 
 // 2.   Profile page
 //Show user profile
-Route::get('/noticeBoard/{id}', [PagesController::class, 'profile']);
+//Route::get('/noticeBoard/{id}', [PagesController::class, 'profile']);
 //Route::get('/notices/{id}', function($id){
 //    return view('pages.profile', [
 //        'notice' => Notice::find($id)

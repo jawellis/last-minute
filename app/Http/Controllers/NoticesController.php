@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Notice;
 use Illuminate\Http\Request;
 
 class NoticesController extends Controller
@@ -9,13 +10,14 @@ class NoticesController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
     public function index()
     {
-        //
+        return view('pages.noticeBoard', [
+            'notices' => Notice::all()
+        ]);
     }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -41,11 +43,13 @@ class NoticesController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
     public function show($id)
     {
-        //
+        return view('pages.profile', [
+            'notice' => Notice::find($id)
+        ]);
     }
 
     /**
