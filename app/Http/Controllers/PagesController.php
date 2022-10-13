@@ -18,6 +18,8 @@ class PagesController extends Controller
 
 
 
+
+
 //    public function noticeBoard() {
 //        return view('pages.noticeBoard', [
 //        'notices' => Notice::all()

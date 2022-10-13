@@ -20,14 +20,23 @@ class NoticesController extends Controller
 //                ->paginate(3)
         ]);
     }
+
+    public function filter()
+    {
+        return view('pages.noticeBoard', [
+            // show notice and order by time
+            'notices' => Notice::where('active', '1')->get()
+
+        ]);
+    }
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
     public function create()
     {
-        //
+        return view('pages.createNotice');
     }
 
     /**

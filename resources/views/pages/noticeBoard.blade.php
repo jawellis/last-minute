@@ -29,6 +29,17 @@
         </label>
     </section>
 
+    <label for="filter"> Filter </label>
+    <select name="filter-options" id="filter">
+        <option value="none">none</option>
+        <option value="day">day</option>
+        <option value="time">time</option>
+        <option value="active">active</option>
+    </select>
+
+{{--    <li>  <a href="/filter"> filter </a></li>--}}
+
+
     @unless(count($notices) == 0)
         @foreach($notices as $notice)
             <section class="plan-notice">

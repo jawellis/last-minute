@@ -9,9 +9,9 @@
     <title>Create notice</title>
 </head>
 <body>
-
+<a href="/noticeBoard" class="back-btn"> < </a>
 <main>
-
+    <h1> Hi </h1>
 
 </main>
 
