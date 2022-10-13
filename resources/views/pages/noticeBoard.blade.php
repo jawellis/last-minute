@@ -49,11 +49,18 @@
                 </section>
             </section>
         @endforeach
+{{--pagination --}}
+{{--    {{$notices->links()}}--}}
     @else
         <p> No new plan notices found</p>
     @endunless
 
 </main>
+<footer class="sticky-footer">
+    <section class="bottom-nav">
+        <a href="/createNotice"> + </a>
+    </section>
+</footer>
 
 </body>
 </html>

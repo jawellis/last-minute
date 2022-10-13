@@ -15,7 +15,9 @@ class NoticesController extends Controller
     public function index()
     {
         return view('pages.noticeBoard', [
-            'notices' => Notice::all()
+            // show notice and order by time
+            'notices' => Notice::orderBy('from_time', 'asc')->get()
+//                ->paginate(3)
         ]);
     }
     /**
