@@ -91,6 +91,11 @@ button{
 
 }
 
+/*profile pic*/
+.profile-pic {
+    height: 100px;
+}
+
 /*footer*/
 .sticky-footer {
     position: fixed;

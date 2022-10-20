@@ -12,12 +12,11 @@
 <a href="/noticeBoard" class="back-btn"> < </a>
 <main>
     <header>
-        <img src="" alt="profile pic"><br><br>
+        <img src="/images/profilepic.png" alt="profile pic" class="profile-pic"><br><br>
         <h1>{{$notice['name'] }}</h1>
         <nav>
             <ul>
                 <li> Profile </li>
-                <li> Memories </li>
                 <li> Settings </li>
             </ul>
         </nav><hr>
