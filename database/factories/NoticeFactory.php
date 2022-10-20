@@ -16,7 +16,8 @@ class NoticeFactory extends Factory
      *
      * @return array
      */
-    public function definition()
+    // command: php artisan db:seed
+    public function definition(): array
     {
         return [
             'name' => $this->faker->name(),
@@ -24,7 +25,7 @@ class NoticeFactory extends Factory
             'until_time' => '22:00:00',
             'location' => $this->faker->city(),
             'day_part_tags' => $this->faker->dayOfWeek(),
-            'active' => $this->faker->boolean(),
+            'active' => $this->faker->boolean()
         ];
     }
 

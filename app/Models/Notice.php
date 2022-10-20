@@ -9,5 +9,14 @@ class Notice extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'name',
+        'day_part_tags',
+        'location',
+        'from_time',
+        'until_time',
+        'active'
+    ];
 
 }
+

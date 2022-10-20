@@ -20,7 +20,7 @@ class CreateNoticesTable extends Migration
             $table->time('until_time'); // until what time
             $table->string('location'); // Location
             $table->string('day_part_tags');
-            $table->boolean('active'); //Active or non-active notice
+            $table->boolean('active')->default(0); //Active or non-active notice
             $table->timestamps();
         });
     }

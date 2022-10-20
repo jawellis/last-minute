@@ -29,18 +29,17 @@
         </label>
     </section>
 
-    <label for="filter"> Filter </label>
-    <select name="filter-options" id="filter">
-        <option value="none">none</option>
-        <option value="day">day</option>
-        <option value="time">time</option>
-        <option value="active">active</option>
-    </select>
 
-{{--    <li>  <a href="/filter"> filter </a></li>--}}
-
+{{--    <label for="filter"> Filter </label>--}}
+{{--    <select name="filter-options" id="filter">--}}
+{{--        <option value="active">active</option>--}}
+{{--        <option value="day">day</option>--}}
+{{--        <option value="time">time</option>--}}
+{{--        <option value="none">none</option>--}}
+{{--    </select>--}}
 
     @unless(count($notices) == 0)
+        <a href="/filter"> Only show active notices </a>
         @foreach($notices as $notice)
             <section class="plan-notice">
                 <p class="user">
@@ -48,10 +47,10 @@
                     is looking for last minute plans!
                 </p>
                 <p class="notice-data">
+                    When: <b>{{$notice['day_part_tags']}}</b> <br>
+                    Location: <b>{{$notice['location']}}</b> <br>
                     From <b>{{$notice['from_time']}}</b> <br>
                     Until <b>{{$notice['until_time']}}</b> <br>
-                    In <b>{{$notice['location']}}</b> <br>
-                    When: <b>{{$notice['day_part_tags']}}</b> <br>
                 </p>
                 <section class="interaction-btn">
                     <button>Make plans</button>

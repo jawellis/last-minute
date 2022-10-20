@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+//use App\Models\Notice;
 use App\Models\Notice;
 use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
 
 class NoticesController extends Controller
 {
@@ -16,17 +18,18 @@ class NoticesController extends Controller
     {
         return view('pages.noticeBoard', [
             // show notice and order by time
-            'notices' => Notice::orderBy('from_time', 'asc')->get()
+            'notices' => Notice::all()
 //                ->paginate(3)
         ]);
     }
 
+    //Filter function
     public function filter()
     {
         return view('pages.noticeBoard', [
             // show notice and order by time
-            'notices' => Notice::where('active', '1')->get()
-
+            'notices' => Notice::where('active', '0')->get()
+            //orderBy('from_time', 'asc')->get()
         ]);
     }
     /**
@@ -42,12 +45,23 @@ class NoticesController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param \Illuminate\Http\Request $request
+     * @return string
+     * @throws ValidationException
      */
-    public function store(Request $request)
+    public function store(Request $request): string
     {
-        //
+        $formFields = $request->validate([
+            'name' => 'required',
+            'from_time' => 'required',
+            'until_time' => 'required',
+            'location' => 'required',
+            'day_part_tags' => 'required'
+        ]);
+        Notice::create($formFields);
+//
+        return redirect('noticeBoard');
+
     }
 
     /**
