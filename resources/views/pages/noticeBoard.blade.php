@@ -42,6 +42,9 @@
         <a href="/filter"> Only show active notices </a>
         @foreach($notices as $notice)
             <section class="plan-notice">
+                <section >
+                    <img src="/images/profilepic.png" alt="profile pic" id="profile-pic">
+                </section>
                 <p class="user">
                     <b><a href="/noticeBoard/{{$notice['id']}}">{{$notice['name']}} </a></b>
                     is looking for last minute plans!

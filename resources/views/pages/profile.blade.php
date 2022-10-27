@@ -13,7 +13,7 @@
 <main>
     <header>
         <img src="/images/profilepic.png" alt="profile pic" class="profile-pic"><br><br>
-        <h1>{{$notice['name'] }}</h1>
+        <h1>{{$notice['name'] }}</h1><hr>
         <nav>
             <ul>
                 <li> Profile </li>
@@ -23,14 +23,14 @@
     </header>
 
     <section class="plan-notice">
-        <h2>
+        <h3>
             {{$notice['name'] }} is looking for plans!
-        </h2>
+        </h3>
         <p>
-            {{$notice['from_time']}} <br>
-            {{$notice['until_time']}} <br>
-            {{$notice['location']}} <br>
-            {{$notice['day_part_tags']}} <br>
+            On <b>{{$notice['day_part_tags']}}</b> <br>
+            In <b>{{$notice['location']}}</b><br>
+            From <b>{{$notice['from_time']}}</b> <br>
+            Until <b>{{$notice['until_time']}}</b> <br>
         </p>
     </section>
 </main>
