@@ -19,6 +19,8 @@ class NoticesController extends Controller
     {
         return view('pages.noticeBoard', [
             // show notice and order by time
+            $user_id = auth()->user()->id,
+
             'notices' => Notice::all()
 //                ->paginate(3)
         ]);
@@ -57,7 +59,8 @@ class NoticesController extends Controller
             'from_time' => 'required',
             'until_time' => 'required',
             'location' => 'required',
-            'day_part_tags' => 'required'
+            'day_part_tags' => 'required',
+             'user_id' => 'required'
         ]);
         Notice::create($formFields);
 //
@@ -74,9 +77,11 @@ class NoticesController extends Controller
     public function show($id)
     {
         return view('pages.profile', [
-            'notice' => Notice::find($id)
+            'notice' => Notice::find($id),
         ]);
     }
+
+
 
     /**
      * Show the form for editing the specified resource.

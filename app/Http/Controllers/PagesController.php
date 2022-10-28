@@ -13,8 +13,8 @@ class PagesController extends Controller
         return view('pages.index');
     }
 
-    public function show() {
-        return view('pages.authUserProfile');
+    public function settings() {
+        return view('pages.settings');
     }
 
 

@@ -19,12 +19,10 @@
     <section class="plan-notice">
     <form method="POST" action="/noticeBoard">
         @csrf
-        <label for="name"> Name </label>
-            <input name="name" type="text" id="name"><br>
 
-{{--        @error('description')--}}
-{{--        <p></p>
-{{--        @enderror--}}
+        <label for="name"> </label>
+            <input name="name" type="hidden" id="name" value="{{auth()->user()->name}}"><br>
+
 
         <label for="day_part_tags"> Day </label>
             <select name="day_part_tags" id="day_part_tags">
@@ -47,6 +45,8 @@
         <label for="until_time"> Until (time)</label>
             <input type="time" name="until_time" id="until_time"><br>
 
+        <label for="user_id"> </label>
+        <input name="user_id" type="hidden" id="user_id" value="{{auth()->user()->id}}" ><br>
         <button type="submit" > Create </button>
     </form>
     </section>

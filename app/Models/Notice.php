@@ -15,8 +15,13 @@ class Notice extends Model
         'location',
         'from_time',
         'until_time',
-        'active'
+        'active',
+        'user_id'
     ];
+
+    public function user(){
+        return $this->belongsTo('App\Models\User');
+    }
 
 }
 
