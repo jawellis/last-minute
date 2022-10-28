@@ -10,7 +10,7 @@
 </head>
 <body>
 <a href="/noticeBoard" class="back-btn"> < </a>
-<main>
+
     <header>
         <img src="/images/profilepic.png" alt="profile pic" class="profile-pic"><br><br>
         <h1>{{$notice['name'] }}</h1><hr>
@@ -22,16 +22,21 @@
         </nav><hr>
     </header>
 
+<main>
+
     <section class="plan-notice">
+
         <h3>
             {{$notice['name'] }} is looking for plans!
         </h3>
+
         <p>
             On <b>{{$notice['day_part_tags']}}</b> <br>
             In <b>{{$notice['location']}}</b><br>
             From <b>{{$notice['from_time']}}</b> <br>
             Until <b>{{$notice['until_time']}}</b> <br>
         </p>
+
     </section>
 </main>
 

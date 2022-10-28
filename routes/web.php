@@ -4,6 +4,7 @@ use App\Http\Controllers\PagesController;
 use App\Http\Controllers\NoticesController;
 use App\Models\Notice;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 
@@ -44,13 +45,9 @@ Route::get('filter', [NoticesController::class, 'filter']);
 Route::get('createNotice', [NoticesController::class, 'create']);
 
 
-
-
-
-
-
 // 2.   Profile page
 //Show user profile
+Route::get('/authUserProfile', [PagesController::class, 'show']);
 //Route::get('/noticeBoard/{id}', [PagesController::class, 'profile']);
 //Route::get('/notices/{id}', function($id){
 //    return view('pages.profile', [
@@ -59,10 +56,5 @@ Route::get('createNotice', [NoticesController::class, 'create']);
 //});
 
 
-
-
-
-
 Auth::routes();
-
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

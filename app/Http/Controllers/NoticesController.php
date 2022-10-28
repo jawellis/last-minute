@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 //use App\Models\Notice;
 use App\Models\Notice;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 
