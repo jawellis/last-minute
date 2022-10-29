@@ -9,7 +9,7 @@
     <title>Create notice</title>
 </head>
 <body>
-<a href="/noticeBoard" class="back-btn"> < </a>
+<a href="/personalProfile" class="back-btn"> < </a>
 <header>
     <h1> Create notice </h1>
 </header>
