@@ -15,7 +15,6 @@
         <ul>
             <li><a href="/noticeBoard"> Notice Board </a></li>
             <li><a href="/personalProfile"> Profile </a></li>
-            <li><a href="/settings"> Settings </a></li>
         </ul>
     </nav><hr>
 </header>

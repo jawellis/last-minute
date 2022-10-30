@@ -15,9 +15,10 @@
     <h1 class="fake-logo">Last m1nute</h1><hr>
     <nav>
         <ul>
-            <li><a href="/noticeBoard"> Notice Board </a></li>
             <li><a href="/personalProfile"> Profile </a></li>
+            <li><a href="/noticeBoard"> Notice Board </a></li>
             <li><a href="/settings"> Settings </a></li>
+
         </ul>
     </nav><hr>
 </header>
@@ -30,14 +31,6 @@
         </label>
     </section>
 
-
-{{--    <label for="filter"> Filter </label>--}}
-{{--    <select name="filter-options" id="filter">--}}
-{{--        <option value="active">active</option>--}}
-{{--        <option value="day">day</option>--}}
-{{--        <option value="time">time</option>--}}
-{{--        <option value="none">none</option>--}}
-{{--    </select>--}}
 
     @unless(count($notices) == 0)
         <a href="/filter"> Only show active notices </a>
@@ -89,22 +82,56 @@
                 </section>
             </section>
 
+
+
+
             @endif
         @endforeach
+
+
 {{--pagination --}}
 {{--    {{$notices->links()}}--}}
     @else
         <p> No new plan notices found</p>
+        <p> Looking for last minute plans? </p>
+        <section >
+            <button><a href="/createNotice"> Create a new notice! </a></button>
+        </section>
     @endunless
 
 
 </main>
-<footer class="sticky-footer">
-    <section class="bottom-nav">
-        <a href="/createNotice"> + </a>
-    </section>
-</footer>
 
+
+{{--@if($notice['user_id'] == auth()->user()->id)--}}
+    @unless(auth()->user()->user_plus == 1)
+        <p>Want to make as many plans as you want? Go Plus!</p>
+
+    @else
+        <section >
+            <footer class="sticky-footer">
+                <section class="bottom-nav">
+                    <a href="/createNotice"> + </a>
+                </section>
+            </footer>
+        </section>
+    @endunless
+{{--@endif--}}
+
+
+{{--@unless(auth()->user()->user_plus == 1)--}}
+{{--@if($notice['user_id'] == auth()->user()->id)--}}
+{{-- <p>Want to make as many plans as you want? Go Plus!</p>--}}
+{{--@else--}}
+{{--    <section >--}}
+{{--        <footer class="sticky-footer">--}}
+{{--            <section class="bottom-nav">--}}
+{{--                <a href="/createNotice"> + </a>--}}
+{{--            </section>--}}
+{{--        </footer>--}}
+{{--    </section>--}}
+{{--@endif--}}
+{{--@endunless--}}
 
 
 
