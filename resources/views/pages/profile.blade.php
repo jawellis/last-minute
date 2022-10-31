@@ -11,8 +11,6 @@
 <body>
 <a href="/noticeBoard" class="back-btn"> < </a>
 
-
-
     <header>
         <img src="/images/profilepic.png" alt="profile pic" class="profile-pic"><br><br>
         <h1>{{$notice['name'] }}</h1><hr>
@@ -38,6 +36,11 @@
             From <b>{{$notice['from_time']}}</b> <br>
             Until <b>{{$notice['until_time']}}</b> <br>
         </p>
+        <section class="interaction-btn">
+            <button>Make plans</button>
+            <button>Invite</button>
+            <button>Hide</button>
+        </section>
 
     </section>
 </main>

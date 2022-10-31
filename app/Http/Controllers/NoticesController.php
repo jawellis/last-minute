@@ -19,22 +19,32 @@ class NoticesController extends Controller
     {
         return view('pages.noticeBoard', [
             // show notice and order by time
-            $user_id = auth()->user()->id,
 
-            'notices' => Notice::all()
+            'notices' => Notice::All()
 //                ->paginate(3)
         ]);
+
+        //search
+    }
+    public function search() {
+        $search = $_GET['query'];
+        $notices = Notice::where('name', 'LIKE', "%{$search}%")
+            ->orWhere('location', 'LIKE', "%{$search}%")
+            ->orWhere('day_part_tags', 'LIKE', "%{$search}%")
+            ->get();
+        return view('pages.search', compact('notices'));
     }
 
     //Filter function
     public function filter()
     {
-        return view('pages.noticeBoard', [
-            // show notice and order by time
-            'notices' => Notice::where('active', '0')->get()
-            //orderBy('from_time', 'asc')->get()
+        return view('pages.noticeBoard',[
+            'notices' => Notice::all()->filter()->where('day_part_tags', 'Monday')
+
+
         ]);
     }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -63,7 +73,6 @@ class NoticesController extends Controller
              'user_id' => 'required'
         ]);
         Notice::create($formFields);
-//
         return redirect('noticeBoard');
 
     }
@@ -87,23 +96,23 @@ class NoticesController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
     public function edit($id)
     {
         //
-    }
+     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Http\Response|\Illuminate\Routing\Redirector
      */
     public function update(Request $request, $id)
     {
-        //
+//
     }
 
     /**

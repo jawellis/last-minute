@@ -25,11 +25,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [PagesController::class, 'index']);
 
 
-
 //1.    Notice board
 // Show all notices incl. added ones
 Route::get('/noticeBoard', [NoticesController::class, 'show']);
-
 
 //Show all notices
 Route::resource('noticeBoard', NoticesController::class);
@@ -40,21 +38,19 @@ Route::resource('noticeBoard', NoticesController::class);
 //    ]);
 //});
 
-// 2.   Profile page
-//Show user profile (logged in user)
-
-
-// filter
-Route::get('filter', [NoticesController::class, 'filter']);
-
 
 //CRUD for single notice (logged in user)
 Route::get('createNotice', [NoticesController::class, 'create']);
 
+// Search
+Route::get('search', [NoticesController::class, 'search']);
+// filter
+Route::get('filter', [NoticesController::class, 'filter']);
 // settings
 Route::get('settings', [PagesController::class, 'settings']);
 
 
-
+// 2.   Profile page
+//Show user profile (logged in user)
 Auth::routes();
 Route::get('/personalProfile', [ProfileController::class, 'index']);

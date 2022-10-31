@@ -9,12 +9,13 @@
     <title>Document</title>
 </head>
 <body>
+{{--<a href="/settings"> Settings </a>--}}
 
 <header>
     <img src="/images/profilepic.png" alt="profile pic" class="profile-pic"><br><br>
-    <h1>{{auth()->user()->name}}</h1><hr>
+    <h2>{{auth()->user()->name}}</h2>
     <nav>
-        <ul>
+        <ul class="nav-bar">
             <li><a href="/personalProfile"> Profile </a></li>
             <li><a href="/noticeBoard"> Notice Board </a></li>
             <li><a href="/settings"> Settings </a></li>
@@ -38,7 +39,7 @@
                 Until <b>{{$notice['until_time']}}</b> <br>
             </p>
             <section class="interaction-btn">
-                <button>Edit</button>
+                <button><a href="/noticeBoard/{{$notice->id}}/edit">Edit</a></button>
                 <button>Delete</button>
             </section>
         </section>
@@ -52,19 +53,25 @@
 @endunless
 
 
+</main>
+    {{--            validation for userPlus--}}
+    @unless(auth()->user()->user_plus == 1)
+        <section>
+            <footer class="sticky-footer">
+                <p>Want to make as many plans as you want? Go Plus!</p>
+            </footer>
+        </section>
 
-@unless(auth()->user()->user_plus == 1)
-    <p>Want to make as many plans as you want? Go Plus!</p>
-
-@else
-    <section >
-        <footer class="sticky-footer">
-            <section class="bottom-nav">
-                <a href="/createNotice"> + </a>
-            </section>
-        </footer>
-    </section>
+    @else
+        <section >
+            <footer class="sticky-footer">
+                <section class="bottom-nav">
+                    <a href="/createNotice"> + </a>
+                </section>
+            </footer>
+        </section>
 @endunless
+
 
 
 </body>

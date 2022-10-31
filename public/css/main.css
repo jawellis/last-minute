@@ -6,10 +6,15 @@ body {
 
 /*header*/
 header {
-    margin: 0 0 35px;
+    margin: 0;
     height: 100%;
     text-align: center;
     color: black;
+
+}
+
+.nav-bar {
+    margin-top: 15px;
 }
 
 /*headings*/
@@ -18,8 +23,9 @@ h1, h2, h3, h4 {
     margin: 0;
 }
 
-h1.fake-logo {
-    font-size: 70px;
+.fake-logo {
+    font-size: 40px;
+    margin-top: 10px;
 }
 
 /*lists*/
@@ -68,12 +74,16 @@ p.notice-data {
 
 a {
     text-decoration: none;
-    color: #700000;
+    color: black;
 }
 
 a.back-btn{
     border: 1px solid black;
     padding: 8px;
+}
+
+a.user-name{
+    color: #700000;
 }
 
 section.interaction-btn {
@@ -93,7 +103,8 @@ button{
 
 /*profile pic*/
 .profile-pic {
-    height: 100px;
+    height: 50px;
+    margin-top: 10px;
 }
 
 #profile-pic {
