@@ -39,7 +39,7 @@
                 Until <b>{{$notice['until_time']}}</b> <br>
             </p>
             <section class="interaction-btn">
-                <button><a href="/noticeBoard/{{$notice->id}}/edit">Edit</a></button>
+                <button><a href="/personalProfile/{{$notice->id}}/edit">Edit</a></button>
                 <button>Delete</button>
             </section>
         </section>

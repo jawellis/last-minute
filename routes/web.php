@@ -41,6 +41,8 @@ Route::resource('noticeBoard', NoticesController::class);
 
 //CRUD for single notice (logged in user)
 Route::get('createNotice', [NoticesController::class, 'create']);
+Route::get('/personalProfile/{notice}/edit', [NoticesController::class, 'edit']);
+Route::put('/personalProfile/{notice}', [NoticesController::class, 'update']);
 
 // Search
 Route::get('search', [NoticesController::class, 'search']);

@@ -81,10 +81,6 @@
                     From <b>{{$notice['from_time']}}</b> <br>
                     Until <b>{{$notice['until_time']}}</b> <br>
                     </p>
-                    <section class="interaction-btn">
-                   <button>Edit</button>
-                    <button>Delete</button>
-                    </section>
                 </section>
 
             @else
@@ -109,10 +105,6 @@
                     <button>Hide</button>
                 </section>
             </section>
-
-
-
-
             @endif
         @endforeach
 

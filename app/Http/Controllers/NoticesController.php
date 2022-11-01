@@ -7,6 +7,7 @@ use App\Models\Notice;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
+use Mockery\Matcher\Not;
 
 class NoticesController extends Controller
 {
@@ -73,6 +74,7 @@ class NoticesController extends Controller
              'user_id' => 'required'
         ]);
         Notice::create($formFields);
+
         return redirect('noticeBoard');
 
     }
@@ -98,9 +100,11 @@ class NoticesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Notice $notice)
     {
-        //
+        return view('pages.editNotice', [
+            'notice'=> $notice
+        ]);
      }
 
     /**
@@ -110,9 +114,19 @@ class NoticesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Http\Response|\Illuminate\Routing\Redirector
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Notice $notice)
     {
-//
+        $formFields = $request->validate([
+            'name' => 'required',
+            'from_time' => 'required',
+            'until_time' => 'required',
+            'location' => 'required',
+            'day_part_tags' => 'required',
+            'user_id' => 'required'
+        ]);
+        $notice->update($formFields);
+        return redirect('personalProfile');
+
     }
 
     /**
