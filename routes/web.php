@@ -31,18 +31,13 @@ Route::get('/noticeBoard', [NoticesController::class, 'show']);
 
 //Show all notices
 Route::resource('noticeBoard', NoticesController::class);
-//Route::get('/noticeBoard', [PagesController::class, 'noticeBoard']);
-//Route::get('/notices', function () {
-//    return view('pages.notices', [
-//        'notices' => Notice::all()
-//    ]);
-//});
+
 
 
 //CRUD for single notice (logged in user)
 Route::get('createNotice', [NoticesController::class, 'create']);
 Route::get('/personalProfile/{notice}/edit', [NoticesController::class, 'edit']);
-Route::post('/personalProfile/{notice}', [NoticesController::class, 'update']);
+Route::put('/personalProfile/{notice}', [NoticesController::class, 'update']);
 
 // Search
 Route::get('search', [NoticesController::class, 'search']);
@@ -52,7 +47,7 @@ Route::get('filter', [NoticesController::class, 'filter']);
 Route::get('settings', [PagesController::class, 'settings']);
 
 // status toggle button
-Route::put('statusUpdate', [NoticesController::class, 'noticeStatusUpdate'])->name('statusUpdate');
+Route::get('statusUpdate', [NoticesController::class, 'noticeStatusUpdate'])->name('statusUpdate');
 
 
 // 2.   Profile page

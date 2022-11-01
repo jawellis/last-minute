@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -14,9 +15,9 @@
     <h1> Create notice </h1>
 </header>
 
+
 <main>
-
-
+    @if(auth()->user()->user_plus == 1))
     <section class="plan-notice">
     <form method="POST" action="/noticeBoard">
         @csrf
@@ -53,9 +54,12 @@
         <button type="submit" > Create </button>
     </form>
     </section>
+@else
+    <p>Want to make as many plans as you want? Go Plus!</p>
 
-
+@endif
 </main>
 
 </body>
 </html>
+

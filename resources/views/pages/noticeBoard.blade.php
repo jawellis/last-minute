@@ -79,7 +79,8 @@
                     From <b>{{$notice['from_time']}}</b> <br>
                     Until <b>{{$notice['until_time']}}</b> <br>
                     </p><br>
-                    <form method="POST">
+                    <form>
+
                         <input data-id="{{$notice->id}}" class="toggle-class" type="checkbox" data-onstyle="success" data-offstyle="danger" data-toggle="toggle" data-on="Active" data-off="InActive" {{ $notice->status ? 'checked' : '' }}>
                     </form>
                 </section>
@@ -102,7 +103,7 @@
                     Until <b>{{$notice['until_time']}}</b> <br>
                 </p>
                 <section class="interaction-btn">
-                    @if($notice['status'] == 0)
+                    @if($notice['status'] == 1)
                         <p> {{$notice['name']}} has her notice on hold </p>
                     @else
                     <button>Make plans</button>
@@ -130,21 +131,7 @@
 
 {{--            validation for userPlus--}}
 
-@unless(auth()->user()->user_plus == 1)
-    <section>
-        <footer class="sticky-footer">
-            <p>Want to make as many plans as you want? Go Plus!</p>
-        </footer>
-    </section>
-@else
-    <section >
-        <footer class="sticky-footer">
-            <section class="bottom-nav">
-                <a href="/createNotice"> + </a>
-            </section>
-        </footer>
-    </section>
-@endunless
+@include('layouts.footer')
 
 </body>
 </html>
@@ -160,7 +147,7 @@
                 url: '/statusUpdate',
                 data: {'status': status, 'notice_id': notice_id},
                 success: function(data){
-                    console.log('success')
+                    console.log('succes')
                 }
             });
         })

@@ -136,7 +136,7 @@ class NoticesController extends Controller
             'day_part_tags' => 'required',
             'user_id' => 'required'
         ]);
-        $notice->create($formFields);
+        $notice->update($formFields);
         return redirect('personalProfile');
 
     }
