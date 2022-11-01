@@ -6,6 +6,10 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="/css/main.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" ></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"  />
+    <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+    <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
     <title>Last Minute</title>
 </head>
 <body>
@@ -41,18 +45,10 @@
     </form>
     </section>
 
-    <form>
+    <form action="/filter" method="get">
         <label for="sort_by"></label>
         <select name="sort_by" id="sort_by">
-            <option> Select a day </option>
-            <option value="all_days"> All days </option>
-            <option value="Monday"> Monday </option>
-            <option value="Tuesday"> Tuesday </option>
-            <option value="Wednesday"> Wednesday </option>
-            <option value="Thursday"> Thursday </option>
-            <option value="Friday"> Friday </option>
-            <option value="Saturday"> Saturday </option>
-            <option value="Sunday"> Sunday </option>
+            <option> order by Active </option>
         </select>
         <button><a href="/filter"> Filter </a></button>
     </form>
@@ -77,11 +73,10 @@
                         Location: <b>{{$notice['location']}}</b> <br>
                         From <b>{{$notice['from_time']}}</b> <br>
                         Until <b>{{$notice['until_time']}}</b> <br>
-                    </p>
-                    <section class="interaction-btn">
-                        <button>Edit</button>
-                        <button>Delete</button>
-                    </section>
+                    </p><br>
+                    <form method="POST">
+                        <input data-id="{{$notice->id}}" class="toggle-class" type="checkbox" data-onstyle="success" data-offstyle="danger" data-toggle="toggle" data-on="Active" data-off="InActive" {{ $notice->status ? 'checked' : '' }}>
+                    </form>
                 </section>
 
             @else
@@ -144,5 +139,22 @@
 
 </body>
 </html>
+<script>
+    $(function() {
+        $('.toggle-class').change(function() {
+            var status = $(this).prop('checked') === true ? 0 : 1;
+            var notice_id = $(this).data('id');
+            $.ajax({
 
+                type: "GET",
+                dataType: "json",
+                url: '/statusUpdate',
+                data: {'status': status, 'notice_id': notice_id},
+                success: function(data){
+                    console.log('success')
+                }
+            });
+        })
+    });
+</script>
 

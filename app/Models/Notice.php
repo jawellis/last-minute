@@ -15,7 +15,7 @@ class Notice extends Model
         'location',
         'from_time',
         'until_time',
-        'active',
+        'status',
         'user_id'
     ];
 

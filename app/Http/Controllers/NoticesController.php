@@ -24,9 +24,20 @@ class NoticesController extends Controller
             'notices' => Notice::All()
 //                ->paginate(3)
         ]);
+    }
+
+        public function noticeStatusUpdate(Request $request)
+    {
+        $notice = Notice::find($request->notice_id);
+        $notice->status = $request->status;
+        $notice->save();
+        return response()->json(['success'=>'Status change successfully.']);
+    }
+//
+
 
         //search
-    }
+
     public function search() {
         $search = $_GET['query'];
         $notices = Notice::where('name', 'LIKE', "%{$search}%")
@@ -40,7 +51,8 @@ class NoticesController extends Controller
     public function filter()
     {
         return view('pages.noticeBoard',[
-            'notices' => Notice::all()->filter()->where('day_part_tags', 'Monday')
+            'notices' => Notice::all()->filter()->where('status', '1')
+
 
 
         ]);
@@ -124,7 +136,7 @@ class NoticesController extends Controller
             'day_part_tags' => 'required',
             'user_id' => 'required'
         ]);
-        $notice->update($formFields);
+        $notice->create($formFields);
         return redirect('personalProfile');
 
     }

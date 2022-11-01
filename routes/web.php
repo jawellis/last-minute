@@ -42,7 +42,7 @@ Route::resource('noticeBoard', NoticesController::class);
 //CRUD for single notice (logged in user)
 Route::get('createNotice', [NoticesController::class, 'create']);
 Route::get('/personalProfile/{notice}/edit', [NoticesController::class, 'edit']);
-Route::put('/personalProfile/{notice}', [NoticesController::class, 'update']);
+Route::post('/personalProfile/{notice}', [NoticesController::class, 'update']);
 
 // Search
 Route::get('search', [NoticesController::class, 'search']);
@@ -50,6 +50,9 @@ Route::get('search', [NoticesController::class, 'search']);
 Route::get('filter', [NoticesController::class, 'filter']);
 // settings
 Route::get('settings', [PagesController::class, 'settings']);
+
+// status toggle button
+Route::put('statusUpdate', [NoticesController::class, 'noticeStatusUpdate'])->name('statusUpdate');
 
 
 // 2.   Profile page

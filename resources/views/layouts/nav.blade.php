@@ -12,9 +12,9 @@
 <header>
     <h1 class="fake-logo">Last m1nute</h1><hr>
     <nav>
-        <ul>
-            <li><a href="/noticeBoard"> Notice Board </a></li>
+        <ul class="nav-bar">
             <li><a href="/personalProfile"> Profile </a></li>
+            <li><a href="/noticeBoard"> Notice Board </a></li>
         </ul>
     </nav><hr>
 </header>

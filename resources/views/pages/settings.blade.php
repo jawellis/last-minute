@@ -24,7 +24,6 @@
 </header>
 
 <main>
-
     <section id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
@@ -52,9 +51,15 @@
                         @endguest
 
         </nav>
+        <section>
 
+        </section>
+    </section>
 </main>
 
 </body>
+
+
+
 </html>
 

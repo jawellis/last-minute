@@ -6,6 +6,7 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="/css/main.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"  />
     <title>Document</title>
 </head>
 <body>
@@ -41,6 +42,9 @@
             <section class="interaction-btn">
                 <button><a href="/personalProfile/{{$notice->id}}/edit">Edit</a></button>
                 <button>Delete</button>
+            </section>
+            <section>
+
             </section>
         </section>
     @endforeach
