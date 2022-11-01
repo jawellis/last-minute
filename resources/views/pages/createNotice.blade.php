@@ -17,7 +17,7 @@
 
 
 <main>
-    @if(auth()->user()->user_plus == 1))
+    @if(auth()->user()->user_plus == 1)
     <section class="plan-notice">
     <form method="POST" action="/noticeBoard">
         @csrf

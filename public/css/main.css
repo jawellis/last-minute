@@ -130,7 +130,22 @@ button{
 }
 
 
-.index-page {
-    justify-content: center;
+.index-page{
     margin-top: 50%;
+    border: 1px solid lightgray;
+    border-radius: 8px;
+    background-color: #fff3f3;
+    box-shadow: 1px 1px 3px #cbcbcb;
+    padding: 15px;
+
+;
+}
+
+.valLinks {
+    padding: 10px;
+
+}
+
+.index-header{
+    margin-bottom: 10px;
 }

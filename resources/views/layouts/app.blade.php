@@ -23,11 +23,9 @@
 <body>
 
     <section class="valForms">
+        <section>
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-
-
-
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
@@ -67,7 +65,7 @@
                 </div>
             </div>
         </nav>
-
+        </section>
         <main class="py-4">
             @yield('content')
         </main>

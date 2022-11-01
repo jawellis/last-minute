@@ -20,7 +20,7 @@
 
 <header>
     <h1 class="fake-logo">Last m1nute</h1><br>
-    <h2>Notice board</h2>
+{{--    <h2>Notice board</h2>--}}
 
     <nav>
         <ul class="nav-bar">
@@ -81,7 +81,25 @@
                     </p><br>
                     <form>
 
-                        <input data-id="{{$notice->id}}" class="toggle-class" type="checkbox" data-onstyle="success" data-offstyle="danger" data-toggle="toggle" data-on="Active" data-off="InActive" {{ $notice->status ? 'checked' : '' }}>
+                        <input data-id="{{$notice->id}}" class="toggle-class" type="checkbox" data-onstyle="success" data-offstyle="danger" data-toggle="toggle" data-on="Active" data-off="Inactive" {{ $notice->status ? 'checked' : '' }}>
+                        <script>
+                            $(function() {
+                                $('.toggle-class').change(function() {
+                                    var status = $(this).prop('checked') === true ? 0 : 1;
+                                    var notice_id = $(this).data('id');
+                                    $.ajax({
+
+                                        type: "GET",
+                                        dataType: "json",
+                                        url: '/statusUpdate',
+                                        data: {'status': status, 'notice_id': notice_id},
+                                        success: function(data){
+                                            console.log('succes')
+                                        }
+                                    });
+                                })
+                            });
+                        </script>
                     </form>
                 </section>
 
@@ -103,7 +121,7 @@
                     Until <b>{{$notice['until_time']}}</b> <br>
                 </p>
                 <section class="interaction-btn">
-                    @if($notice['status'] == 1)
+                    @if($notice['status'] == 0)
                         <p> {{$notice['name']}} has her notice on hold </p>
                     @else
                     <button>Make plans</button>
@@ -135,24 +153,7 @@
 
 </body>
 </html>
-<script>
-    $(function() {
-        $('.toggle-class').change(function() {
-            var status = $(this).prop('checked') === true ? 0 : 1;
-            var notice_id = $(this).data('id');
-            $.ajax({
 
-                type: "GET",
-                dataType: "json",
-                url: '/statusUpdate',
-                data: {'status': status, 'notice_id': notice_id},
-                success: function(data){
-                    console.log('succes')
-                }
-            });
-        })
-    });
-</script>
 
 
 

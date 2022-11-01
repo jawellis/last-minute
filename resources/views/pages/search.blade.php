@@ -96,9 +96,13 @@
                         Until <b>{{$notice['until_time']}}</b> <br>
                     </p>
                     <section class="interaction-btn">
-                        <button>Make plans</button>
-                        <button>Invite</button>
-                        <button>Hide</button>
+                        @if($notice['status'] == 0)
+                            <p> {{$notice['name']}} has her notice on hold </p>
+                        @else
+                            <button>Make plans</button>
+                            <button>Invite</button>
+                            <button>Hide</button>
+                        @endif
                     </section>
                 </section>
 

@@ -12,10 +12,15 @@ use Mockery\Matcher\Not;
 class NoticesController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Create a new controller instance.
      *
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
+     * @return void
      */
+    public function __construct()
+    {
+        $this->middleware('auth.blade.php');
+    }
+
     public function index()
     {
         return view('pages.noticeBoard', [

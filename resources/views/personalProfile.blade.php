@@ -25,6 +25,8 @@
 </header>
 
 <main>
+    <h1>Your notices</h1>
+
 @unless(count($notices) == 0)
 
     @foreach($notices as $notice)
