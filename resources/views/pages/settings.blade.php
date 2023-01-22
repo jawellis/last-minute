@@ -55,7 +55,7 @@
             <form method="POST" action="/settings/updateUserPlus">
                 @csrf
                 <button type="submit" class="button">
-                    {{ \App\Models\User::find(Auth::id())->user_plus ? 'Enable User+' : 'Become User+'}}
+                    {{ \App\Models\User::find(Auth::id())->user_plus ? 'Unsubscribe for User+' : 'Subscribe for User+'}}
                 </button>
             </form>
         </section>

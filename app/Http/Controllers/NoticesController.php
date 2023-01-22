@@ -121,8 +121,8 @@ class NoticesController extends Controller
             'name' => 'required',
             'from_time' => 'required',
             'until_time' => 'required',
-            'location' => 'required',
-            'day_part_tags' => 'required',
+            'location' => 'required|string|max:10',
+            'day_part_tags' => 'required|string|max:10',
              'user_id' => 'required'
         ]);
         Notice::create($formFields);
