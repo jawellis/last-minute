@@ -16,42 +16,38 @@
 <body>
 {{--<a href="/settings"> Settings </a>--}}
 
-
-
 <header>
     <h1 class="fake-logo">Last m1nute</h1><br>
+    <h2>Notice board</h2>
 {{--    <h2>Notice board</h2>--}}
 
     <nav>
         <ul class="nav-bar">
             <li><a href="/personalProfile"> Profile </a></li>
             <li><a href="/noticeBoard"> Notice Board </a></li>
-{{--            <li><a href="/settings"> Settings </a></li>--}}
+            <li><a href="/invitations"> Invitations </a></li>
+            {{--            <li><a href="/settings"> Settings </a></li>--}}
 
         </ul>
     </nav><hr>
 </header>
 
-
 <main>
     <h1>Latest notices</h1>
 
-    <section class="search">
-    <form action="/search" method="get" >
-        <label for="search"></label>
-        <input type="search" name="query" id="search">
-        <button type="submit" name="search">
-            Search
-        </button>
-    </form>
-    </section>
-
-    <form action="/filter" method="get">
-        <label for="sort_by"></label>
-        <select name="sort_by" id="sort_by">
-            <option> order by Active </option>
-        </select>
-        <button><a href="/filter"> Filter </a></button>
+{{--    search/filter--}}
+    <form action="/noticeBoard" method="GET">
+        <label>
+            <input type="text" name="search" placeholder="Search by name, location, or day_part_tag">
+        </label>
+        <label>
+            <select name="status">
+                <option value="All">All</option>
+                <option value="Active">Active</option>
+                <option value="Inactive">Inactive</option>
+            </select>
+        </label>
+        <button type="submit">Search</button>
     </form>
 
 
@@ -79,27 +75,12 @@
                     From <b>{{$notice['from_time']}}</b> <br>
                     Until <b>{{$notice['until_time']}}</b> <br>
                     </p><br>
-                    <form>
-
-                        <input data-id="{{$notice->id}}" class="toggle-class" type="checkbox" data-onstyle="success" data-offstyle="danger" data-toggle="toggle" data-on="Active" data-off="Inactive" {{ $notice->status ? 'checked' : '' }}>
-                        <script>
-                            $(function() {
-                                $('.toggle-class').change(function() {
-                                    var status = $(this).prop('checked') === true ? 0 : 1;
-                                    var notice_id = $(this).data('id');
-                                    $.ajax({
-
-                                        type: "GET",
-                                        dataType: "json",
-                                        url: '/statusUpdate',
-                                        data: {'status': status, 'notice_id': notice_id},
-                                        success: function(data){
-                                            console.log('succes')
-                                        }
-                                    });
-                                })
-                            });
-                        </script>
+                    <form method="POST" action="/noticeBoard/{{ $notice->id }}/updateNoticeStatus">
+                        @csrf
+                        <input type="hidden" name="notice_id" value="{{ $notice->id }}">
+                        <button type="submit" class="button">
+                            {{ $notice->status ? 'Set inactive' : 'Set active'}}
+                        </button>
                     </form>
                 </section>
 
@@ -123,10 +104,10 @@
                 <section class="interaction-btn">
                     @if($notice['status'] == 0)
                         <p> {{$notice['name']}} has her notice on hold </p>
-                    @else
-                    <button>Make plans</button>
-                    <button>Invite</button>
-                    <button>Hide</button>
+                    @elseif(count(Auth::user()->notices()->get()) >= 2)
+                        <button id="inviteButton" onclick="changeButtonText(); alert('You have invited them for plans')">Invite</button>{{--                    <button>Make plans</button>--}}
+{{--                    <button>Invite</button>--}}
+{{--                    <button>Hide</button>--}}
                     @endif
                 </section>
             </section>
@@ -153,8 +134,11 @@
 
 </body>
 </html>
-
-
+<script>
+    function changeButtonText() {
+        document.getElementById("inviteButton").innerHTML = "Invited";
+    }
+</script>
 
 
 

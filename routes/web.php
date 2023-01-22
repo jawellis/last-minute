@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\NoticesController;
-
+use App\Models\User;
 use App\Http\Controllers\ProfileController;
 use App\Models\Notice;
 use Illuminate\Http\Request;
@@ -36,19 +36,30 @@ Route::resource('noticeBoard', NoticesController::class);
 
 //CRUD for single notice (logged in user)
 Route::get('createNotice', [NoticesController::class, 'create']);
-Route::get('/personalProfile/{notice}/edit', [NoticesController::class, 'edit']);
-Route::put('/personalProfile/{notice}', [NoticesController::class, 'update']);
+// Edit & Update notice + middleware
+Route::get('personalProfile/{notice}/edit', [NoticesController::class, 'edit']);
 
-// Search
-Route::get('search', [NoticesController::class, 'search']);
-// filter
-Route::get('filter', [NoticesController::class, 'filter']);
+Route::put('personalProfile/{notice}', [NoticesController::class, 'update']);
+
+// Delete
+Route::delete('personalProfile/{notice}', [NoticesController::class, 'destroy']);
+
+//// Search
+//Route::get('search', [NoticesController::class, 'search']);
+//// filter
+//Route::get('filter', [NoticesController::class, 'filter']);
+//Search filter
+Route::get('/noticeBoard', [NoticesController::class, 'search'])->name('search');
+
 // settings
 Route::get('settings', [PagesController::class, 'settings']);
 
 // status toggle button
-Route::get('statusUpdate', [NoticesController::class, 'noticeStatusUpdate'])->name('statusUpdate');
+Route::post('/noticeBoard/{id}/updateNoticeStatus', [NoticesController::class, 'updateNoticeStatus']);
 
+//Route::post('noticeStatusUpdate', [NoticesController::class, 'noticeStatusUpdate'])->name('statusUpdate');
+// user+ button
+Route::post('/settings/updateUserPlus', [ProfileController::class, 'updateUserPlus']);
 
 // 2.   Profile page
 //Show user profile (logged in user)

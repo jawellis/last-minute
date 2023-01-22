@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"  />
     <title>Document</title>
 </head>
+@auth
 <body>
 {{--<a href="/settings"> Settings </a>--}}
 
@@ -19,6 +20,7 @@
         <ul class="nav-bar">
             <li><a href="/personalProfile"> Profile </a></li>
             <li><a href="/noticeBoard"> Notice Board </a></li>
+            <li><a href="/invitations"> Invitations </a></li>
             <li><a href="/settings"> Settings </a></li>
         </ul>
     </nav><hr>
@@ -43,10 +45,12 @@
             </p>
             <section class="interaction-btn">
                 <button><a href="/personalProfile/{{$notice->id}}/edit">Edit</a></button>
-                <button>Delete</button>
-            </section>
-            <section>
-
+{{--                <button>Delete</button>--}}
+                <form action="/personalProfile/{{$notice->id}}" method="post">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit">Delete</button>
+                </form>
             </section>
         </section>
     @endforeach
@@ -60,10 +64,12 @@
 
 
 </main>
+
 {{--            validation for userPlus--}}
 @include('layouts.footer')
 
 </body>
+@endauth
 </html>
 
 

@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use App\Models\Notice;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 use Mockery\Matcher\Not;
 
@@ -31,37 +32,71 @@ class NoticesController extends Controller
         ]);
     }
 
-        public function noticeStatusUpdate(Request $request)
+    public function updateNoticeStatus(Request $request, $id)
     {
-        $notice = Notice::find($request->notice_id);
-        $notice->status = $request->status;
+        $notice = Notice::find($id);
+        $notice->status = !$notice->status;
         $notice->save();
-        return response()->json(['success'=>'Status change successfully.']);
+        return redirect()->back();
     }
+//        public function noticeStatusUpdate(Request $request)
+//    {
+//        $notice = Notice::find($request->notice_id);
+//        $notice->status = $request->status;
+//        $notice->save();
+//        return response()->json(['success'=>'Status change successfully.']);
+//    }
 //
 
-
         //search
+//
 
-    public function search() {
-        $search = $_GET['query'];
-        $notices = Notice::where('name', 'LIKE', "%{$search}%")
-            ->orWhere('location', 'LIKE', "%{$search}%")
-            ->orWhere('day_part_tags', 'LIKE', "%{$search}%")
-            ->get();
-        return view('pages.search', compact('notices'));
-    }
-
-    //Filter function
-    public function filter()
+    public function search(Request $request)
     {
-        return view('pages.noticeBoard',[
-            'notices' => Notice::all()->filter()->where('status', '1')
+        $query = Notice::query();
 
+        if ($request->has('status') && $request->status != "All") {
+            if ($request->status == "Active") {
+                $query->where('status', 1);
+            } elseif ($request->status == "Inactive") {
+                $query->where('status', 0);
+            }
+        }
 
+        if ($request->has('search')) {
+            $search_terms = explode(' ', $request->search);
+            foreach ($search_terms as $term) {
+                $query->where('name', 'like', '%' . $term . '%')
+                    ->orWhere('location', 'like', '%' . $term . '%')
+                    ->orWhere('day_part_tags', 'like', '%' . $term . '%');
+            }
+        }
 
-        ]);
+        $notices = $query->get();
+        return view('pages.noticeBoard', ['notices' => $notices]);
     }
+
+//    public function search() {
+//        $search = $_GET['query'];
+//        $notices = Notice::where('name', 'LIKE', "%{$search}%")
+//            ->orWhere('location', 'LIKE', "%{$search}%")
+//            ->orWhere('day_part_tags', 'LIKE', "%{$search}%")
+//            ->get();
+//        return view('pages.search', compact('notices'));
+//    }
+//
+//    //Filter function
+//    public function filter()
+//    {
+//        return view('pages.noticeBoard',[
+//            'notices' => Notice::all()->filter()->where('status', '1')
+//
+//
+//
+//        ]);
+//    }
+
+
 
     /**
      * Show the form for creating a new resource.
@@ -119,9 +154,13 @@ class NoticesController extends Controller
      */
     public function edit(Notice $notice)
     {
-        return view('pages.editNotice', [
-            'notice'=> $notice
-        ]);
+        if(!Auth::check() || $notice->user_id != auth()->id()) {
+            abort(403, 'Unauthorized action');
+        }else {
+            return view('pages.editNotice', [
+                'notice' => $notice
+            ]);
+        }
      }
 
     /**
@@ -133,16 +172,20 @@ class NoticesController extends Controller
      */
     public function update(Request $request, Notice $notice)
     {
-        $formFields = $request->validate([
-            'name' => 'required',
-            'from_time' => 'required',
-            'until_time' => 'required',
-            'location' => 'required',
-            'day_part_tags' => 'required',
-            'user_id' => 'required'
-        ]);
-        $notice->update($formFields);
-        return redirect('personalProfile');
+        if(!Auth::check() || $notice->user_id != auth()->id()) {
+            abort(403, 'Unauthorized action');
+        } else {
+            $formFields = $request->validate([
+                'name' => 'required',
+                'from_time' => 'required',
+                'until_time' => 'required',
+                'location' => 'required',
+                'day_part_tags' => 'required',
+                'user_id' => 'required'
+            ]);
+            $notice->update($formFields);
+            return redirect('personalProfile');
+        }
 
     }
 
@@ -150,10 +193,15 @@ class NoticesController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Http\Response|\Illuminate\Routing\Redirector
      */
-    public function destroy($id)
+    public function destroy(Notice $notice)
     {
-        //
+        if(!Auth::check() || $notice->user_id != auth()->id()) {
+            abort(403, 'Unauthorized action');
+        } else {
+            $notice->delete();
+            return redirect('/personalProfile');
+        }
     }
 }
